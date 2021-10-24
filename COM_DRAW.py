@@ -1,5 +1,7 @@
+### Python lib requirement：
+### array 
 import array
-import serial
+import pyserial
 import threading
 import numpy as np
 import time
@@ -29,7 +31,7 @@ def plotData():
 if __name__ == "__main__":
     app = pg.mkQApp()
     win = pg.GraphicsWindow()
-    win.setWindowTitle(u'pyqtgraph逐点画波形图')    #窗口标题
+    win.setWindowTitle(u'COM_Drawer')    #窗口标题
     win.resize(800, 500)    #窗口大小
     data = array.array('i')
     historyLength = 200
@@ -40,7 +42,7 @@ if __name__ == "__main__":
     p.setRange(xRange=[0, historyLength], yRange=[0, 255], padding=0)
     p.setLabel(axis='left', text='y / V')
     p.setLabel(axis='bottom', text='x / point')
-    p.setTitle('semg')  #图像标题
+    p.setTitle('COMX')  #图像标题
     curve = p.plot()
     curve.setData(data)
     portx = 'COM2'  #端口号
@@ -57,5 +59,5 @@ if __name__ == "__main__":
     th1.start()
     timer = pg.QtCore.QTimer()
     timer.timeout.connect(plotData)
-    timer.start(1)  #调用时间(单位ms)
+    timer.start(1)  #采样时间(单位ms)
     app.exec_()
