@@ -1,7 +1,7 @@
 ### Python lib requirement：
-### array 
+### pyserial,pyqygraph,pyqt5
 import array
-import pyserial
+import serial
 import threading
 import numpy as np
 import time
